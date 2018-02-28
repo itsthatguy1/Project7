@@ -22,6 +22,6 @@ public class Dispenser
     public void dispenseCash()
     {
         System.out.println("*Dispensed $" + amountCash + "*");
-        System.out.println("Thank you");
+        System.out.println("Thank you.");
     }
 }

@@ -5,10 +5,22 @@
 
 public class Bank
 {
+    boolean approved;
+
     /**
      *
      */
     public Bank()
     {
+        approved = false;
+    }
+
+    /**
+     *
+     */
+    public boolean getApproval()
+    {
+        approved = true;
+        return approved;
     }
 }

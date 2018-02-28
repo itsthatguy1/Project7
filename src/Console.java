@@ -1,6 +1,9 @@
 /**
  * @author Sean Stock
  * @version 2.27.18
+ * @todo Make an option to cancel during any point
+ * @todo add gitignore
+ * @todo add functionality for bank rejection
  */
 
 import java.util.Scanner;
@@ -9,11 +12,9 @@ public class Console
 {
     private Scanner scanner;
     private Reader reader;
-    private Deposit deposit;
-    private Printer printer;
-    private Dispenser dispenser;
     private Bank bank;
     private int menuChoice;
+    private boolean approved;
 
     /**
      *
@@ -22,8 +23,6 @@ public class Console
     public static void main(String[] args)
     {
         Console console = new Console();
-        console.menu();
-        console.withdrawal();
     }
 
     /**
@@ -33,7 +32,8 @@ public class Console
     {
         scanner = new Scanner(System.in);
         reader = new Reader();
-        printer = new Printer();
+        bank = new Bank();
+        menu();
     }
 
     /**
@@ -47,6 +47,22 @@ public class Console
         System.out.println("3. Transfer");
         System.out.println("4. Check Balance");
         menuChoice = scanner.nextInt();
+        switch (menuChoice)
+        {
+            case 1: withdrawal();
+                    printReceipt(menuChoice);
+                    break;
+            case 2: deposit();
+                    printReceipt(menuChoice);
+                    break;
+            case 3: transfer();
+                    printReceipt(menuChoice);
+                    break;
+            case 4: checkBalance();
+                    printReceipt(menuChoice);
+                    break;
+        }
+
     }
 
     /**
@@ -56,9 +72,13 @@ public class Console
     {
         System.out.println("How much Cash would you like to withdraw?");
         int amountCash = scanner.nextInt();
-        scanner.close();
-        Dispenser dispenser = new Dispenser(amountCash);
-        dispenser.dispenseCash();
+        //scanner.close();
+        approved = bank.getApproval();
+        if (approved)
+        {
+            Dispenser dispenser = new Dispenser(amountCash);
+            dispenser.dispenseCash();
+        }
     }
 
     /**
@@ -66,8 +86,15 @@ public class Console
      */
     public void deposit()
     {
-        Deposit deposit = new Deposit();
-
+        System.out.println("How much Cash would you like to deposit?");
+        int amountCash = scanner.nextInt();
+        //2scanner.close();
+        approved = bank.getApproval();
+        if (approved)
+        {
+            Deposit deposit = new Deposit(amountCash);
+            deposit.depositSlip();
+        }
     }
 
     /**
@@ -75,6 +102,10 @@ public class Console
      */
     public void transfer()
     {
+        approved = bank.getApproval();
+        if (approved)
+        {
+        }
     }
 
     /**
@@ -82,5 +113,18 @@ public class Console
      */
     public void checkBalance()
     {
+        approved = bank.getApproval();
+        if (approved)
+        {
+        }
+    }
+
+    /**
+     *
+     */
+    public void printReceipt(int menuChoice)
+    {
+        Printer printer = new Printer(menuChoice);
+        printer.printReceipt();
     }
 }
