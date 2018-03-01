@@ -1,4 +1,5 @@
 /**
+ * Prints a receipt or rejection notice to user.
  * @author Sean Stock
  * @version 2.27.
  * @todo Put some actual variables in the receipt.
@@ -7,8 +8,10 @@
 public class Printer
 {
     private int menuChoice;
+
     /**
-     *
+     * Constructor of class Printer.
+     * @param menuChoice
      */
     public Printer(int menuChoice)
     {
@@ -16,7 +19,7 @@ public class Printer
     }
 
     /**
-     *
+     * Prints one of four receipts based on the type of transaction that took place.
      */
     public void printReceipt()
     {
@@ -57,5 +60,13 @@ public class Printer
                     break;
         }
 
+    }
+
+    /**
+     * Prints a rejection notice.
+     */
+    public void printRejection()
+    {
+        System.out.println("I'm sorry, your transaction has been rejected for *reason*");
     }
 }

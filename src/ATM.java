@@ -1,7 +1,7 @@
 /**
+ * Creates Console objects and stores them in an array.
  * @author Sean Stock
  * @version 2.27.18
- * @todo clear screen after each transaction is done
  */
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class ATM
     private boolean machineOn;
 
     /**
-     *
+     * Main method of class ATM.
      * @param args
      */
     public static void main(String[] args)
@@ -22,7 +22,7 @@ public class ATM
     }
 
     /**
-     *
+     * Constructor of class ATM
      */
     public ATM()
     {
@@ -32,7 +32,7 @@ public class ATM
     }
 
     /**
-     *
+     * Creates new Console objects and stores them in an array. Will continue to loop while the machine is on.
      */
     public void addTransaction()
     {
