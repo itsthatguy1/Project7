@@ -61,12 +61,4 @@ public class Printer
         }
 
     }
-
-    /**
-     * Prints a rejection notice.
-     */
-    public void printRejection()
-    {
-        System.out.println("I'm sorry, your transaction has been rejected for *reason*");
-    }
 }

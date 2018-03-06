@@ -5,13 +5,15 @@
  * As a result, only one of the fields will ever be defined for a given bank object. The field which is defined represents the type of communication and its outcome.
  * @author Sean Stock
  * @version 2.27.18
+ * @todo consider a more fitting name for the class
  */
 
 public class Bank
 {
-    boolean approved;
-    boolean hasDeposited;
-    boolean correctPIN;
+    private boolean approved;
+    private boolean hasDeposited;
+    private boolean correctPIN;
+    private boolean correctCardNum;
 
     /**
      * Constructor of class Bank.
@@ -22,6 +24,7 @@ public class Bank
 
     /**
      * Allows transactions to be approved.
+     * @return approved
      */
     public boolean getApproval()
     {
@@ -39,11 +42,23 @@ public class Bank
 
     /**
      * Allows Reader object to verify a PIN number.
+     * @return correctPIN
      */
     public boolean verifyPIN(int pin)
     {
         int PIN = pin;
         correctPIN = true;
         return correctPIN;
+    }
+
+    /**
+     * Allow Reader object to verify a card number.
+     * @return correctCardNum
+     */
+    public boolean verifyCard(long cardNum)
+    {
+        long cardNumber = cardNum;
+        correctCardNum = true;
+        return correctCardNum;
     }
 }

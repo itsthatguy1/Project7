@@ -2,6 +2,7 @@
  * Creates Console objects and stores them in an array.
  * @author Sean Stock
  * @version 2.27.18
+ * @todo Consider a more sensible name for this class
  */
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public class ATM
     private ArrayList<Console> transactions;
     private Console transaction;
     private boolean machineOn;
+    private boolean sameUser;
+    private long cardNum;
 
     /**
      * Main method of class ATM.
@@ -28,6 +31,8 @@ public class ATM
     {
         transactions = new ArrayList<>();
         machineOn = true;
+        sameUser = false;
+        cardNum = 0;
         addTransaction();
     }
 
@@ -38,7 +43,12 @@ public class ATM
     {
         while (machineOn)
         {
-            transaction = new Console();
+            transaction = new Console(sameUser, cardNum);
+            if (transaction.getCardApproved() || sameUser)
+            {
+                sameUser = transaction.promptContinue(sameUser);
+                cardNum = transaction.getCardNum();
+            }
             transactions.add(transaction);
         }
     }

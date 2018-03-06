@@ -28,7 +28,7 @@ public class Deposit
     /**
      * Prints message confirming successful deposit.
      */
-    public void depositSlip()
+    public void depositMessage()
     {
         System.out.println("Successfully deposited $" + amountCash + " to some account");
         System.out.println("Thank you.");
@@ -37,6 +37,8 @@ public class Deposit
     /**
      * Allows user to insert envelope into deposit slip.
      * Will ensure that user has inserted check, and will send confirmation to the bank.
+     * @return hasDeposited
+     * @todo make it so that if user does not deposit slip first time, they are rejected and transaction is cancelled on the spot.
      */
     public boolean checkSlip()
     {
@@ -46,6 +48,10 @@ public class Deposit
         {
             hasDeposited = true;
             envelopeConfirmation.hasDeposited();
+        }
+        else
+        {
+            checkSlip();
         }
         return hasDeposited;
     }
